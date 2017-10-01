@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html class="no-js"> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Array Class</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+       <p1>字面量</p1>
+        <script>
+        //数组字面量
+        var empty = [];
+        var numbers = ["zero","one","two",
+                       "three","four","five",
+                       "six","seven","eight","nine"];
+
+        numbers[numbers.length] = "eleven";  //在数组的最后添加一个值
+        numbers.push("oogg");
+      
+        delete numbers[11];//删除元素并没有回收存储位置
+        numbers.splice(2,0,"William");  
+        //splice(插入元素的位置，删除元素的个数，插入的元素)，，从插入元素后开始删除元素
+
+
+        document.write("<br />" + "数字的遍历");
+        for(var i = 0; i < numbers.length; i++){
+            document.write(numbers[i] + "   ");
+        }
+
+
+        document.write("<br />"+empty[1]);
+        empty[1] = "yuziqi";  //新增
+        document.write("<br />"+empty[1]);
+
+        numbers[1] = "one";  //替换
+        document.write("<br />"+numbers[1]);
+
+        //对象字面量
+        var numbers_object = {
+            one: "1",
+            two: "2",
+            three : 3,
+            "four" : 4     // 不是特殊字符尽量不加引号
+        }
+
+        document.write("<br />" + numbers_object.one);//用numbers_object.one的方式更好
+        document.write("<br />" + numbers_object.three);
+        document.write("<br />" + numbers_object["four"]);
+
+        //修改
+        numbers_object["four"] = "Four";
+        document.write("<br />" + numbers_object["four"]);
+        numbers_object.one = "The One";
+        document.write("<br />" + numbers_object.one);
+
+        //增加
+        numbers_object.five = 5;
+        document.write("<br />" + numbers_object.five);
+        numbers_object["six"] = 6;
+        document.write("<br />" + numbers_object["six"]);
+
+        //用 || 来填充默认值
+        var seven = numbers_object.seven || "none";
+        document.write("<br />" + seven);
+
+       
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title> new document </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+    <script type="text/javascript">
+        var x = 1;
+        function test() {
+            this.x = 0;
+            alert(this.x);
+        }
+        test();
+
+        //对象字面量
+        var stooge = {
+            firstName: "Yu",
+            "last-name": "ZiQi"
+        }
+
+        document.write(stooge.firstName);//如果属性名是个合法的字符，用引号就不强求,,采用”.“用法提高可读性
+        document.write(stooge["last-name"]);
+        document.write("<br />" + stooge["middle-name"]); // undifine
+
+        var flight = {
+            airline: "Oceanic",
+            number: 815,
+            departure: {
+                IATA: "SYD",
+                time: "2017-09-10 13:55",
+                city: "Sydney"
+            },
+            arrival: {
+                IATA: "LAX",
+                tiem: "2017-09-12 17:36",
+                city: "Los Angeles"
+            }
+        }//如果有任何的语法规则被打破，如缺少逗号或冒号或大括号，将会触发JavaScript错误。
+        //浏览器的错误信息在指出对象字面量语法错误的位置一般有帮助，
+        //但他们不一定会在指出错误的性质完全准确
+        document.write("<br />" + flight.airline);
+        document.write("<br />" + flight.departure.IATA);
+
+        // || 运算符用来填充默认值
+        var middle = stooge["middle-name"] || "none";
+        var status = flight.status || "unkown"
+        document.write("<br />" + middle);
+        document.write("<br />" + status);
+
+        //尝试undifine的成员属性中取值将会导致TypeError异常，这时可以通过&&运算符来避免错误
+        //document.write("<br />" + flight.equipment);
+        //document.write("<br />" + flight.equipment.model); //Uncaught TypeError: Cannot read property 'model' of undefined
+        //document.write("<br />" + flight.equipment&&flight.equipment.model);
+
+        //更新，对象里的值可以通过赋值语句来更新,如果没有该属性名，那么该属性就会被扩充进去
+        stooge["last-name"] = "WangFei";
+        document.write("<br /> last-name更新后 : " + stooge["last-name"]);
+        stooge["middle-name"] = "XiJinPing";
+        document.write("<br />新增middle-name : " + stooge["middle-name"]);
+
+        document.write("<br />" + typeof flight.number);
+        document.write("<br />" + typeof flight.status);
+        document.write("<br />" + typeof flight.arrival);
+        document.write("<br />" + typeof flight.toString);
+        document.write("<br />" + flight.hasOwnProperty("number"));
+
+        //枚举
+
+        var i;
+        var properties = [
+            'firstName',
+            'middle-name',
+            'last-name',
+            'profession'
+        ];
+        for (i = 0; i < properties.length; i++) {
+            document.writeln(properties[i] + ": " + typeof stooge[properties[i]] + "<br/>");
+        }
+
+        //删除 delete
+
+        delete stooge.firstName;
+        document.write("<br />删除firtstname属性 : " + stooge.firstName + "<br />");
+    </script>
+</head>
+
+<body>
+    <input type="button" value="添加一行" onClick="test()" />
+    <!--在添加按钮上添加点击事件  -->
+</body>
+
+</html>
